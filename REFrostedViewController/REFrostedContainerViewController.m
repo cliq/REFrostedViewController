@@ -61,6 +61,10 @@
         
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognized:)];
         [backgroundView addGestureRecognizer:tapRecognizer];
+        backgroundView.isAccessibilityElement = YES;
+        backgroundView.accessibilityTraits = UIAccessibilityTraitButton;
+        backgroundView.accessibilityLabel = @"Close";
+        backgroundView.accessibilityIdentifier = @"Close";
     }
     
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -83,6 +87,7 @@
         [self.containerView addSubview:self.frostedViewController.menuViewController.view];
         [self.frostedViewController.menuViewController didMoveToParentViewController:self];
     }
+    self.view.accessibilityViewIsModal = YES;
     
     [self.view addGestureRecognizer:self.frostedViewController.panGestureRecognizer];
 }
